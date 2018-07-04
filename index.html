@@ -1,51 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://widget.cloudinary.com/global/all.js" charset="utf-8"></script>
-  <script src="main.js" defer charset="utf-8"></script>
-  <title>Imacoustic</title>
-</head>
-<body>
+<html>
+  <head>
+      <title>Imacoustic</title>
+  </head>
+  <body>
 
-  <img id="preview"/>
-  <div id="caption"></div>
-  <video id="player" controls="" autoplay="" name="media"></video>
+    <img id="preview"/>
+    <div id="caption"></div>
+    <video id="player" controls="" autoplay="" name="media"></video>
 
-  <a href="#" id="upload_widget_opener">Take a Picture</a>
+    <a href="#" id="upload_widget_opener">Take a Picture</a>
 
-  <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-  <script
+
+
+    <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
-  <script type="text/javascript">
-    document.getElementById("upload_widget_opener").addEventListener("click", function() {
-      cloudinary.openUploadWidget({ cloud_name: 'imacoustic-test', upload_preset: 'z8hxbfq7'},
-        function(error, result) {
+    <script type="text/javascript">
+      document.getElementById("upload_widget_opener").addEventListener("click", function() {
+        cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'vivbxf4w'},
+          function(error, result) {
 
-            let image = result[0];
-            let public_id = image.public_id;
-            let topTag = image.tags[0];
-            let thumbnail = image.thumbnail_url;
-            let tags = image.tags;
+              let image = result[0];
+              let public_id = image.public_id;
+              let topTag = image.tags[0];
+              let thumbnail = image.thumbnail_url;
+              let tags = image.tags;
 
-            document.getElementById('preview').src = thumbnail;
-            document.getElementById('caption').innerHTML = topTag;
-            let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
-            $.getJSON("./main.json", function(result){
-              console.log(result);
-            });
+              document.getElementById('preview').src = thumbnail;
+              document.getElementById('caption').innerHTML = topTag;
+              // let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
+              $.getJSON("./main.json", function(){
 
-            document.getElementById('player').src = soundURL;
-            console.log(confidence);
-            console.log(test);
-            console.log(error, result)
-        });
-    }, false);
-  </script>
-</body>
+              });
+
+              document.getElementById('player').src = soundURL;
+              console.log(confidence);
+              console.log(test);
+              console.log(error, result)
+          });
+      }, false);
+    </script>
+  </body>
 </html>
