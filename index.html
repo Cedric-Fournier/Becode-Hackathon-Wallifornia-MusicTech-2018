@@ -32,15 +32,14 @@
 
               document.getElementById('preview').src = thumbnail;
               document.getElementById('caption').innerHTML = topTag;
-              // let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
-              $.getJSON("./main.json", function(){
-
+              let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
+              $.getJSON('https://imacoustic.cloudinary.auth0-extend.com/image-service', function(data){
+                console.log(data);
               });
 
               document.getElementById('player').src = soundURL;
-              console.log(confidence);
-              console.log(test);
               console.log(error, result)
+              console.log(tags);
           });
       }, false);
     </script>
