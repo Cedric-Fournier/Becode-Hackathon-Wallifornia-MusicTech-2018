@@ -1,0 +1,22 @@
+[
+  {
+    "soundurl":"https://actions.google.com/sounds/v1/animals/dog_barking.ogg",
+    "tag":["dog", "barking"]
+  },
+  {
+    "soundurl":"https://actions.google.com/sounds/v1/doors/door_close.ogg",
+    "tag":["door","close-door"]
+  },
+  {
+    "soundurl":"https://actions.google.com/sounds/v1/weapons/magnum_shots.ogg",
+    "tag":["magnum", "weapon", "shoot"]
+  },
+  {
+    "soundurl":"https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg",
+    "tag":["alien", "ambiance"]
+  },
+  {
+    "soundurl":"https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg",
+    "tag":["alarm", "alarm_clock"]
+  },
+]
