@@ -24,7 +24,7 @@
 
   <script type="text/javascript">
     document.getElementById("upload_widget_opener").addEventListener("click", function() {
-      cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'vivbxf4w'},
+      cloudinary.openUploadWidget({ cloud_name: 'imacoustic-test', upload_preset: 'z8hxbfq7'},
         function(error, result) {
 
             let image = result[0];
@@ -35,9 +35,9 @@
 
             document.getElementById('preview').src = thumbnail;
             document.getElementById('caption').innerHTML = topTag;
-            // let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
-            $.getJSON("./main.json", function(){
-
+            let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
+            $.getJSON("./main.json", function(result){
+              console.log(result);
             });
 
             document.getElementById('player').src = soundURL;
