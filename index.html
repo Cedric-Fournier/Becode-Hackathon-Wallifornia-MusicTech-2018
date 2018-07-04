@@ -41,8 +41,15 @@
               console.log(error, result);
 
               for(i in result){
-                console.log(result[i].tags);
-                console.log(result[i].info.detection.aws_rek_faces.data.celebrity_faces.0.names);
+                console.log(result[i]);
+                let unknown = result[i].info.detection.aws_rek_face.data.unrecognized_faces.length;
+                console.log(unknown);
+                if(unknown == 0){
+                  console.log(result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name);
+                } else {
+                  console.log("celeb not recognised");
+                }
+                // console.log(result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name);
               }
 
               // document.getElementById('preview').src = thumbnail;
