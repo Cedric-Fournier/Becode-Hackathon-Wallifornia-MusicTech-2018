@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Imacoustic</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat" rel="stylesheet">
+</head>
+
+<body>
+
+	<header>
+		<h1>Imacoustic</h1>
+	</header>
+
+	<div class="select">
+		<h2>Upload an image of your favourite artist or album and let Imacoustic generate music for you.</h2>
+		<button id="button1"type="button" name="button" onclick="byeByeButton()">Use Cloudinary</button>
+	</div>
+
+	<div class="select">
+		<button id="button2" type="button" name="button" onclick="byeByeButton()">Discover the Artist</button>
+		<button id="button3" type="button" name="button" onclick="byeByeButton()">Artist's Top Songs</button>
+	</div>
+
+	<footer>
+		<p>Powered by Be Code</p>
+	</footer>
+
+</body>
+
+<script type="text/javascript">
+function byeByeButton() {
+document.getElementsByClassName('select')[0].style.display = "none";
+document.getElementsByTagName('button')[0].style.display = "none";
+}
+
+</script>
+
+</html>
