@@ -20,8 +20,16 @@
     crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+      $(document).ready(function(){
+        $.getJSON('https://imacoustic.cloudinary.auth0-extend.com/image-service', function(data){
+          // console.log(data);
+          for(i in data){
+            console.log(data[i].tags);
+          }
+        });
+      });
       document.getElementById("upload_widget_opener").addEventListener("click", function() {
-        cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'vivbxf4w'},
+        cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'rsoc7avm'},
           function(error, result) {
 
               let image = result[0];
@@ -30,16 +38,17 @@
               let thumbnail = image.thumbnail_url;
               let tags = image.tags;
 
-              document.getElementById('preview').src = thumbnail;
-              document.getElementById('caption').innerHTML = topTag;
-              let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
-              $.getJSON('https://imacoustic.cloudinary.auth0-extend.com/image-service', function(data){
-                console.log(data);
-              });
+              console.log(error, result);
 
-              document.getElementById('player').src = soundURL;
-              console.log(error, result)
-              console.log(tags);
+              for(i in result){
+                console.log(result[i].tags);
+                console.log(result[i].info.detection.aws_rek_faces.data.celebrity_faces.0.names);
+              }
+
+              // document.getElementById('preview').src = thumbnail;
+              // document.getElementById('caption').innerHTML = topTag;
+              // let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
+              // document.getElementById('player').src = soundURL;
           });
       }, false);
     </script>
