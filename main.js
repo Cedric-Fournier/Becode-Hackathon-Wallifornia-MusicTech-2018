@@ -1,14 +1,16 @@
+$(function(){
 
-document.getElementById("upload_widget_opener").addEventListener("click", function() {
-  cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'vivbxf4w'},
-    function(error, result) {
-      const tags = result[0].tags;
-      const public_id = result[0].public_id;
-      const thumbnail = result[0].thumbnail_url;
+    var buttonLoad = document.querySelector('.buttonLoad');
 
-      document.getElementById("thumbnail").src = thumbnail;
-      document.getElementById("tag").innerHTML = tags[0];
+    buttonLoad.addEventListener("click", function() {
+        buttonLoad.innerHTML = "Click me ! FUCK !";
+        buttonLoad.classList.add('spinning');
 
-      console.log(error, result);
-    });
-}, false);
+      setTimeout(
+            function  (){
+                buttonLoad.classList.remove('spinning');
+                buttonLoad.innerHTML = "Click me !";
+            }, 6000);
+    }, false);
+
+});
