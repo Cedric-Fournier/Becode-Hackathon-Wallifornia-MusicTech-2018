@@ -2,12 +2,16 @@
 <html>
   <head>
       <title>Imacoustic</title>
+      <meta charset="UTF-8">
   </head>
   <body>
 
     <img id="preview"/>
     <div id="caption"></div>
-    <video id="player" controls="" autoplay="" name="media"></video>
+    <div id="video">
+      <iframe id="youtubeplayer" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
 
     <a href="#" id="upload_widget_opener">Take a Picture</a>
 
@@ -38,14 +42,32 @@
               let thumbnail = image.thumbnail_url;
               let tags = image.tags;
 
+
               console.log(error, result);
 
               for(i in result){
-                console.log(result[i]);
+                // console.log(result[i]);
                 let unknown = result[i].info.detection.aws_rek_face.data.unrecognized_faces.length;
-                console.log(unknown);
+                // console.log(unknown);
                 if(unknown == 0){
-                  console.log(result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name);
+                  let name = result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name;
+                  console.log(name);
+                  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + name + '&api_key=591eb9d40511433f1eaec7ec16fc690e&format=json', function(data){
+                    console.log(data);
+                    let truename = data.results.artistmatches.artist[0].name;
+                    console.log(truename);
+                    $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' + truename + '&api_key=591eb9d40511433f1eaec7ec16fc690e&format=json', function(data2){
+                      console.log(data2);
+                      let toptrack = data2.toptracks.track[0].name
+                      console.log(toptrack);
+                      $.getJSON('https://www.googleapis.com/youtube/v3/search?part=id&q=' + truename + ' ' + toptrack +'&type=video&key=AIzaSyB-DHXUr356lo_RXTT1_GAdPgszhMNMP58', function(data3){
+                        console.log(data3);
+                        console.log(data3.items[0].id.videoId);
+                        let youid = data3.items[0].id.videoId
+                        $("#youtubeplayer").attr("src", "https://www.youtube.com/embed/" + youid);
+                      });
+                    });
+                  });
                 } else {
                   console.log("celeb not recognised");
                 }
