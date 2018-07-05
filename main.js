@@ -19,18 +19,20 @@ function getArtistLFMTopTrack(str) {
   return new Promise((resolve, reject) => {
     $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
     .done(data => {
-      if(data.toptracks && data.toptracks.track[0]) resolve(data.toptracks.track[0].name);
+      if(data.toptracks && data.toptracks.track[0]) resolve({artist:artist, song:data.toptracks.track[0].name});
       else reject("Couldn't find top track for this artist (step 2)");
     })
     .fail(() => reject("Failed to fetch top track (failed step 2)"));
   });
 }
 
-function getYoutubeVideoId(artist, song) {
-  let searchString = artist + ' ' + song;
+function getYoutubeVideoId(object) {
+  let searchString = object.artist + ' ' + object.song;
   return new Promise((resolve, reject) => {
     $.getJSON('https://www.googleapis.com/youtube/v3/search?part=id&q=' + searchString  +'&type=video&key=' + youtube_api)
     .done(data => {
+      console.log(data);
+      console.log(data.items[0].id.videoId);
       if(data.items && data.items[0]) resolve(data.items[0].id.videoId);
       else reject("No video found (step 3)");
     })
@@ -78,7 +80,7 @@ initiate = () => {
             let name = result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name;
             getArtistLFMName(name)
             .then(data => getArtistLFMTopTrack(data))
-            .then(data => getYoutubeVideoId(data))
+            .then(function(object){getYoutubeVideoId(object)})
             .then(data => $("#youtubeplayer").attr("src", "https://www.youtube.com/embed/" + data))
             .catch(error => console.log(error));
           }
