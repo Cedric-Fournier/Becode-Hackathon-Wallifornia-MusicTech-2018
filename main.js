@@ -5,7 +5,7 @@ const youtube_api = 'AIzaSyB-DHXUr356lo_RXTT1_GAdPgszhMNMP58';
 function getArtistLFMName(str) {
   let name = str;
   return new Promise((resolve, reject) => {
-    $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + name + '&api_key='+ lastfm_api +'&format=json')
+    $.getJSON('https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + name + '&api_key='+ lastfm_api +'&format=json')
     .done(data => {
       if(data.results.artistmatches.artist[0]) resolve(data.results.artistmatches.artist[0].name);
       else reject("No artist with that name (failed step 1)");
@@ -17,7 +17,7 @@ function getArtistLFMName(str) {
 function getArtistLFMTopTrack(str) {
   let artist = str;
   return new Promise((resolve, reject) => {
-    $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
+    $.getJSON('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
     .done(data => {
       console.log(data);
       if(data.toptracks && data.toptracks.track[0]) resolve({artist:artist, song:data.toptracks.track[0].name});
@@ -46,7 +46,7 @@ function getYoutubeVideoId(object) {
 function getArtistLFMGetSimilar(str) {
   let artist = str;
   return new Promise((resolve, reject) => {
-    $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.getSimilar&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
+    $.getJSON('https://ws.audioscrobbler.com/2.0/?method=artist.getSimilar&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
     .done(data => resolve(data))
     // TODO check data
     .fail(() => reject("No top tracks for this artist (failed step 2)"));
