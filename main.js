@@ -56,9 +56,13 @@ function getYoutubeVideoId(artist, song) {
 // getArtistLFMTopTrack("dkfhds")
 // .then(data => console.log(data))
 // .catch(error => console.log(error));
+//
 
 
-window.onload = () => {
+
+
+
+initiate = () => {
 
   cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'rsoc7avm'},
     function(error, result) {
