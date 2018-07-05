@@ -1,5 +1,3 @@
-
-
 function helloButton() {
 document.getElementsByClassName('select')[0].style.display = "block";
 document.getElementsByTagName('button')[0].style.display = "block";
