@@ -1,39 +1,71 @@
-.contentCenter {
-    text-align:center;
-    margin:1em 0;
+body {
+  background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
 }
+
+header {
+  text-align: center;
+  color: white;
+  padding: 5px 20px;
+}
+
+.upload {
+  text-align: center;
+  color: white;
+}
+
+#youtubeplayer {
+  display: none;
+}
+
+.select {
+  text-align: center;
+  color: white;
+  display: none;
+}
+
+h1 {
+  font-family: 'Indie Flower', cursive;
+  font-size: 50px;
+}
+
+h2, button {
+  font-family: 'Montserrat';
+  font-size: 20px;
+}
+
+button {
+  font-family: 'Montserrat';
+  color: #a94c6b;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  border-color: white;
+}
+
+button:hover {
+  color: #592839;
+}
+
+footer {
+  font-family: 'Montserrat';
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+}
+
+/* BUTTON LOAD */
 .buttonLoad {
     display: inline-block;
-    border:1px solid darken(#212121,50%);
     outline:none;
     padding:10px 20px;
     line-height: 1.4;
-    color: #fff;
-    background: #212121;
-    background: linear-gradient(to bottom,  lighten(#212121,20%) 0%,lighten(#212121,15%) 50%,darken(#212121,5%) 51%,darken(#212121,2.5%) 100%);
     border-radius: 4px;
-    border: 1px solid darken(#212121,30%);
     color:lighten(silver,10%);
     text-shadow: darken(silver,80%) -1px -1px 0px;
-
     position: relative;
     transition: padding-right .3s ease;
     font-weight:700;
-    box-shadow:0 1px 0 lighten(#212121,30%) inset, 0px 1px 0 lighten(#212121,10%);
-
-}
-
-.buttonLoad:hover {
-    box-shadow:0 0 10px darken(#212121,10%) inset, 0px 1px 0 lighten(#212121,10%);
-    color:lighten(silver,20%);
-}
-
-.buttonLoad:active{
-    box-shadow:0 0 10px darken(#212121,10%) inset, 0px 1px 0 lighten(#212121,10%);
-    color:lighten(silver,30%);
-    background: darken(#212121,10%);
-    background: linear-gradient(to bottom,  lighten(#212121,10%) 0%,lighten(#212121,5%) 50%,darken(#212121,5%) 51%,darken(#212121,10%) 100%);
-
 }
 
 .buttonLoad.spinning {
@@ -67,8 +99,6 @@
 
 }
 
-
-
 @keyframes rotate360 {
     100% {
         transform: rotate(360deg);
@@ -81,5 +111,4 @@
         margin: -8px 5px 0 0;
     }
 }
-
-body {background:#fff; }
+/* BUTTON LOAD */
