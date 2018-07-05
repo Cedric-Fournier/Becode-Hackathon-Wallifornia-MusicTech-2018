@@ -46,13 +46,47 @@ function getYoutubeVideoId(artist, song) {
     $.getJSON('https://www.googleapis.com/youtube/v3/search?part=id&q=' + searchString  +'&type=video&key=' + youtube_api)
     .done(data => {
       if(data.items & data.items[0]) resolve(data.items[0].id.videoId);
-      resolve(data);
+      else reject("No video found (step 3)");
     })
     .fail(() => reject("Failed to fetch videos (failed step 3)"));
   });
 }
 
 
-getArtistLFMTopTrack("dkfhds")
-.then(data => console.log(data))
-.catch(error => console.log(error));
+// getArtistLFMTopTrack("dkfhds")
+// .then(data => console.log(data))
+// .catch(error => console.log(error));
+
+
+window.onload = () => {
+
+  cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'rsoc7avm'},
+    function(error, result) {
+
+      console.log(result);
+
+        let image = result[0];
+        let public_id = image.public_id;
+        let topTag = image.tags[0];
+        let thumbnail = image.thumbnail_url;
+        let tags = image.tags;
+
+        for(i in result) {
+          let nbfaces = result[i].info.detection.aws_rek_face.data.celebrity_faces.length;
+
+          console.log(nbfaces);
+
+          if(nbfaces === 1) {
+            console.log("Found one face");
+          }
+          else if(nbfaces > 1) {
+            console.log("Found more than one face");
+          }
+          else {
+            console.log("Found no faces");
+          }
+        }
+
+      });
+
+};
