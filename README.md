@@ -31,7 +31,7 @@ It could also create a shuffle playlist.
 
 7 Be Code Learners: 
 * Cédric Fournier
-* Romain Vandevoorder
+* Romain Vandevoorde
 * Colombe Sechehaye
 * Guillaume Deruwez
 * Geoffrey Poelmans
