@@ -45,7 +45,7 @@ function getYoutubeVideoId(artist, song) {
   return new Promise((resolve, reject) => {
     $.getJSON('https://www.googleapis.com/youtube/v3/search?part=id&q=' + searchString  +'&type=video&key=' + youtube_api)
     .done(data => {
-      if(data.items & data.items[0]) resolve(data.items[0].id.videoId);
+      if(data.items && data.items[0]) resolve(data.items[0].id.videoId);
       else reject("No video found (step 3)");
     })
     .fail(() => reject("Failed to fetch videos (failed step 3)"));
@@ -75,6 +75,7 @@ initiate = () => {
         let thumbnail = image.thumbnail_url;
         let tags = image.tags;
 
+        // Pour chaque image
         for(i in result) {
           let nbfaces = result[i].info.detection.aws_rek_face.data.celebrity_faces.length;
 
@@ -82,6 +83,12 @@ initiate = () => {
 
           if(nbfaces === 1) {
             console.log("Found one face");
+            let name = result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name;
+            getArtistLFMName(name)
+            .then(data => getArtistLFMTopTrack(data))
+            .then(data => getYoutubeVideoId(data))
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
           }
           else if(nbfaces > 1) {
             console.log("Found more than one face");
