@@ -1,17 +1,3 @@
-//
-// document.getElementById("upload_widget_opener").addEventListener("click", function() {
-//   cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'vivbxf4w'},
-//     function(error, result) {
-//       const tags = result[0].tags;
-//       const public_id = result[0].public_id;
-//       const thumbnail = result[0].thumbnail_url;
-//
-//       document.getElementById("thumbnail").src = thumbnail;
-//       document.getElementById("tag").innerHTML = tags[0];
-//
-//       console.log(error, result);
-//     });
-// }, false);
 
 const lastfm_api = '591eb9d40511433f1eaec7ec16fc690e';
 const youtube_api = 'AIzaSyB-DHXUr356lo_RXTT1_GAdPgszhMNMP58';
@@ -53,10 +39,16 @@ function getYoutubeVideoId(artist, song) {
 }
 
 
-// getArtistLFMTopTrack("dkfhds")
-// .then(data => console.log(data))
-// .catch(error => console.log(error));
-//
+// TODO check
+function getArtistLFMGetSimilar(str) {
+  let artist = str;
+  return new Promise((resolve, reject) => {
+    $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.getSimilar&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
+    .done(data => resolve(data))
+    // TODO check data
+    .fail(() => reject("No top tracks for this artist (failed step 2)"));
+  });
+}
 
 
 
@@ -87,7 +79,7 @@ initiate = () => {
             getArtistLFMName(name)
             .then(data => getArtistLFMTopTrack(data))
             .then(data => getYoutubeVideoId(data))
-            .then(data => console.log(data))
+            .then(data => $("#youtubeplayer").attr("src", "https://www.youtube.com/embed/" + data))
             .catch(error => console.log(error));
           }
           else if(nbfaces > 1) {
