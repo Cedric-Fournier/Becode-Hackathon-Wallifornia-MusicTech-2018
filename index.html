@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Imacoustic</title>
+    <link rel="stylesheet" href="./Assets/CSS/style.css">
+    <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat" rel="stylesheet">
+  </head>
 
-   <title>Imacoustic</title>
+  <body>
+  	<header>
+  		<h1>Imacoustic</h1>
+  	</header>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat" rel="stylesheet">
-  <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script defer src="main.js" charset="utf-8"></script>
-  <script src="front.js"></script>
-</head>
+  	<div class="upload">
+  		<h2>Upload an image of your favourite artist or album and let Imacoustic generate music for you.</h2>
+  		<button id="upload_widget_opener buttonLoad" class="scale-up-center" type="button" name="button" onclick="helloButton()">Use Cloudinary</button>
+      <iframe id="player" width="" height="" src=""></iframe>
+    </div>
+  	<div class="select">
+  		<button id="discover" class="scale-up-center buttonLoad" type="button" name="button" onclick="byeByeButton()">Discover the Artist</button>
+  		<button id="topSongs" class="scale-up-center buttonLoad" type="button" name="button" onclick="byeByeButton()">Artist's Top Songs</button>
+  	</div>
 
-<body>
+  	<footer>
+  		<p>Powered by Be Code</p>
+  	</footer>
 
-	<header>
-		<h1>Imacoustic</h1>
-	</header>
-
-	<div class="upload">
-		<h2>Upload an image of your favourite artist or album and let Imacoustic generate music for you.</h2>
-		<button id="upload_widget_opener" class="scale-up-center" type="button" name="button" onclick="helloButton()">Use Cloudinary</button>
-     <iframe id="youtubeplayer" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-   </div>
-	<div class="select">
-		<button id="discover" class="scale-up-center" type="button" name="button" onclick="byeByeButton()">Discover the Artist</button>
-		<button id="topSongs" class="scale-up-center" type="button" name="button" onclick="byeByeButton()">Artist's Top Songs</button>
-	</div>
-
-	<footer>
-		<p>Powered by Be Code</p>
-	</footer>
-
-</body>
-
+    <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script defer src="./Assets/JS/main.js" charset="utf-8"></script>
+    <script src="./Assets/JS/front.js"></script>
+  </body>
 </html>
