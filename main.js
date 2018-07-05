@@ -19,6 +19,7 @@ function getArtistLFMTopTrack(str) {
   return new Promise((resolve, reject) => {
     $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' + artist + '&api_key='+ lastfm_api +'&format=json')
     .done(data => {
+      console.log(data);
       if(data.toptracks && data.toptracks.track[0]) resolve({artist:artist, song:data.toptracks.track[0].name});
       else reject("Couldn't find top track for this artist (step 2)");
     })
@@ -80,7 +81,7 @@ initiate = () => {
             let name = result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name;
             getArtistLFMName(name)
             .then(data => getArtistLFMTopTrack(data))
-            .then(function(object){getYoutubeVideoId(object)})
+            .then(object => getYoutubeVideoId(object))
             .then(data => $("#youtubeplayer").attr("src", "https://www.youtube.com/embed/" + data))
             .catch(error => console.log(error));
           }
