@@ -25,7 +25,7 @@ header {
 
 h1 {
   font-family: 'Indie Flower', cursive;
-  font-size: 80px;
+  font-size: 50px;
 }
 
 h2, button {
@@ -34,17 +34,17 @@ h2, button {
 }
 
 button {
-  font-family: 'Indie Flower';
-  color: white;
-  margin-top: 40px;
+  font-family: 'Montserrat';
+  color: #a94c6b;
+  margin-top: 10px;
   padding: 20px;
-  border-radius: 20px;
-  background-color: #aa4b6b;
+  border-radius: 5px;
+  background-color: white;
   border-color: white;
 }
 
 button:hover {
-  background-color: #3b8d99;
+  color: #592839;
 }
 
 footer {
