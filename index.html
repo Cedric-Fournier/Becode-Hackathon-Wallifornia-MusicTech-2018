@@ -1,84 +1,42 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <title>Imacoustic</title>
-      <meta charset="UTF-8">
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <img id="preview"/>
-    <div id="caption"></div>
-    <div id="video">
-      <iframe id="youtubeplayer" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+   <title>Imacoustic</title>
 
-    <a href="#" id="upload_widget_opener">Take a Picture</a>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat" rel="stylesheet">
+  <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script defer src="main.js" charset="utf-8"></script>
+  <script src="front.js"></script>
+</head>
 
+<body>
 
+	<header>
+		<h1>Imacoustic</h1>
+	</header>
 
-    <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+	<div class="upload">
+		<h2>Upload an image of your favourite artist or album and let Imacoustic generate music for you.</h2>
+		<button id="upload_widget_opener" class="scale-up-center" type="button" name="button" onclick="helloButton()">Use Cloudinary</button>
+    <video id="player" controls="" autoplay="" name="media"></video>
+	<div class="select">
+		<button id="discover" class="scale-up-center" type="button" name="button" onclick="byeByeButton()">Discover the Artist</button>
+		<button id="topSongs" class="scale-up-center" type="button" name="button" onclick="byeByeButton()">Artist's Top Songs</button>
+	</div>
 
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $.getJSON('https://imacoustic.cloudinary.auth0-extend.com/image-service', function(data){
-          // console.log(data);
-          for(i in data){
-            console.log(data[i].tags);
-          }
-        });
-      });
-      document.getElementById("upload_widget_opener").addEventListener("click", function() {
-        cloudinary.openUploadWidget({ cloud_name: 'imacoustic-live', upload_preset: 'rsoc7avm'},
-          function(error, result) {
+	<footer>
+		<p>Powered by Be Code</p>
+	</footer>
 
-              let image = result[0];
-              let public_id = image.public_id;
-              let topTag = image.tags[0];
-              let thumbnail = image.thumbnail_url;
-              let tags = image.tags;
+</body>
 
-
-              console.log(error, result);
-
-              for(i in result){
-                // console.log(result[i]);
-                let unknown = result[i].info.detection.aws_rek_face.data.unrecognized_faces.length;
-                // console.log(unknown);
-                if(unknown == 0){
-                  let name = result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name;
-                  console.log(name);
-                  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + name + '&api_key=591eb9d40511433f1eaec7ec16fc690e&format=json', function(data){
-                    console.log(data);
-                    let truename = data.results.artistmatches.artist[0].name;
-                    console.log(truename);
-                    $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' + truename + '&api_key=591eb9d40511433f1eaec7ec16fc690e&format=json', function(data2){
-                      console.log(data2);
-                      let toptrack = data2.toptracks.track[0].name
-                      console.log(toptrack);
-                      $.getJSON('https://www.googleapis.com/youtube/v3/search?part=id&q=' + truename + ' ' + toptrack +'&type=video&key=AIzaSyB-DHXUr356lo_RXTT1_GAdPgszhMNMP58', function(data3){
-                        console.log(data3);
-                        console.log(data3.items[0].id.videoId);
-                        let youid = data3.items[0].id.videoId
-                        $("#youtubeplayer").attr("src", "https://www.youtube.com/embed/" + youid);
-                      });
-                    });
-                  });
-                } else {
-                  console.log("celeb not recognised");
-                }
-                // console.log(result[i].info.detection.aws_rek_face.data.celebrity_faces[0].name);
-              }
-
-              // document.getElementById('preview').src = thumbnail;
-              // document.getElementById('caption').innerHTML = topTag;
-              // let soundURL = "http://res.cloudinary.com/de-demo/video/upload/v1530702415/cat_purr_close.mp3"
-              // document.getElementById('player').src = soundURL;
-          });
-      }, false);
-    </script>
-  </body>
 </html>
