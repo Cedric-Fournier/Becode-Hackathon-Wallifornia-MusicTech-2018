@@ -38,5 +38,7 @@ It could also create a shuffle playlist.
 * Mery Lamri
 * Charlotte Tusset
 
+![Screenshot main page](Assets/mainscreen.png)
+
 
 
